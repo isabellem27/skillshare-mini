@@ -1,0 +1,19 @@
+.buttons{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.3rem;
+}
+#btnNavig{
+    margin-top: 1.5rem;
+    color:  #500050;
+    text-decoration: underline;        /* Soulignement */
+    text-decoration-thickness: 2px;    /* Épaisseur soulignement */
+}
+.btnAction{
+    background-color: #500050;
+    border-radius: 8%;
+    color: #F0F8FF;
+    font-size: 1.3rem;
+    width:auto;
+}

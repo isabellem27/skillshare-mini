@@ -1,0 +1,36 @@
+header{
+    position: relative;
+    z-index: 10;
+}
+
+
+/* NavBar */
+nav {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    height: 20%;
+    max-width: 1920px;
+    border-bottom: 3px solid #F0F8FF;
+    gap: 10px;
+    width: 100%;
+    flex-shrink: 0; /* Empêche la compression */
+}
+.btnMenu{
+    opacity: 100%;
+    font-weight: 500;
+    color: #F0F8FF;
+    text-decoration: underline;        /* Soulignement */
+    text-decoration-thickness: 2px;    /* Épaisseur soulignement */
+    white-space:nowrap;                /* découpe du libellé interdit */
+    margin-left: 20px;                 /* ecartement des boutons */
+}  
+.identity{
+    opacity: 100%;
+    font-weight: 300;
+    font-size: .8rem;
+    color: #F0F8FF;
+    white-space:nowrap;                /* découpe du libellé interdit */
+    margin-left: 20px;                 /* ecartement des boutons */ 
+}
+

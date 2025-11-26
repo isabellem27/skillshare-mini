@@ -1,3 +1,104 @@
-body {
-    background-color: skyblue;
+
+
+:root{
+/* Palette de marrons et orangés */
+--color1: #FFF8F0;   /* Blanc cassé RGB: rgb(255, 248, 240);    */
+--color2: #FFE4B5;   /* Beige moccasin RGB: rgb(255, 228, 181); */
+--color3: #FFD18A;   /* Pêche dorée RGB: rgb(255, 209, 138);    */
+--color4: #FFB887;   /* Orange sable RGB: rgb(255, 184, 135);   */
+--color6: #FFA060;   /* Orange doux RGB: rgb(255, 160, 96);     */
+--color7: #FF8839;   /* Orange vif RGB: rgb(255, 136, 57);      */
+--color8: #E87528;   /* Orange brûlé RGB: rgb(232, 117, 40);    */
+--color9: #FF4500;   /* Orange rouge RGB: rgb(255, 69, 0);      */
+--color10: #CC3300;   /* Vermillon RGB: rgb(204, 51, 0);        */
+--color11: #D66420;  /* Terre cuite RGB: rgb(214, 100, 32);     */
+--color12: #A84710;  /* Caramel foncé RGB: rgb(168, 71, 16);    */
+--color13: #A52A00;   /* Rouille intense RGB: rgb(165, 42, 0);  */
+--color14: #8F3C0C;  /* Brun rouille RGB: rgb(143, 60, 12);     */
+--color15: #763209;  /* Brun chocolat RGB: rgb(118, 50, 9);     */
+--color16: #7F2100;  /* Brun rouge RGB: rgb(127, 33, 0);        */
+--color17: #5C1800;  /* Brun acajou RGB: rgb(92, 24, 0);        */
+--color18: #3A1A05;  /* Brun sombre RGB: rgb(58, 26, 5);        */
+--color19: #140A02;  /* Noir-brun RGB: rgb(20, 10, 2);          */
+
+/* Palette de verts et jaunes */
+--color21: #F5FFF5;  /* Blanc teinté de vert RGB: rgb(245, 255, 245);   */
+--color22: #E0FFE0;  /* Vert menthe très clair RGB: rgb(224, 255, 224); */
+--color23: #C8FFC8;  /* Vert pastel RGB: rgb(200, 255, 200);            */
+--color24: #A0FF80;  /* Vert pomme clair RGB: rgb(160, 255, 128);       */
+--color25: #7FFF00;  /* Vert chartreuse RGB: rgb(127, 255, 0);          */
+--color26: #A0E000;  /* Vert lime RGB: rgb(160, 224, 0);                */
+--color27: #C8D000;  /* Jaune-vert RGB: rgb(200, 208, 0);               */
+--color28: #E8C000;  /* Jaune doré RGB: rgb(232, 192, 0);               */
+--color29: #FFD700;  /* Jaune or RGB: rgb(255, 215, 0);                 */
+--color30: #E8B800;  /* Jaune moutarde RGB: rgb(232, 184, 0);           */
+--color31: #C89000;  /* Olive doré RGB: rgb(200, 144, 0);               */
+--color32: #A07000;  /* Olive foncé RGB: rgb(160, 112, 0);              */
+--color33: #708040;  /* Vert olive RGB: rgb(112, 128, 64);              */
+--color34: #556B2F;  /* Vert olive sombre RGB: rgb(85, 107, 47);        */
+--color35: #3D5C1F;  /* Vert mousse RGB: rgb(61, 92, 31);               */
+--color36: #2D4515;  /* Vert forêt RGB: rgb(45, 69, 21);                */
+--color37: #1F300E;  /* Vert sapin RGB: rgb(31, 48, 14);                */
+--color38: #142008;  /* Vert très sombre RGB: rgb(20, 32, 8);           */
+--color39: #0C1305;  /* Vert presque noir RGB: rgb(12, 19, 5);          */
+--color40: #050A02;  /* Noir verdâtre RGB: rgb(5, 10, 2);               */
+
+/* Palette de bleus et violets */
+--color41: #F0F8FF;  /* Blanc teinté de bleu RGB: rgb(240, 248, 255);   */
+--color42: #E0F0FF;  /* Bleu Alice très clair RGB: rgb(224, 240, 255);  */
+--color43: #C0E0FF;  /* Bleu ciel pâle RGB: rgb(192, 224, 255);         */
+--color44: #90D0FF;  /* Bleu azur clair RGB: rgb(144, 208, 255);        */
+--color45: #60B0FF;  /* Bleu ciel vif RGB: rgb(96, 176, 255);           */
+--color46: #3090FF;  /* Bleu dodger RGB: rgb(48, 144, 255);             */
+--color47: #0070FF;  /* Bleu roi RGB: rgb(0, 112, 255);                 */
+--color48: #0050D0;  /* Bleu intense RGB: rgb(0, 80, 208);              */
+--color49: #2040C0;  /* Bleu outremer RGB: rgb(64, 48, 208);            */
+--color50: #4030D0;  /* Bleu-violet RGB: rgb(96, 32, 224);              */
+--color51: #6020E0;  /* Violet bleuté vif RGB: rgb(128, 16, 240);       */
+--color52: #8010F0;  /* Violet intense RGB:  rgb(160, 0, 255);          */
+--color53: #A000FF;  /* Violet magenta vif RGB: rgb(176, 0, 224);       */
+--color54: #B000E0;  /* Violet fuchsia RGB: rgb(192, 0, 192);           */
+--color55: #C000C0;  /* Magenta violet RGB: rgb(192, 0, 192);           */
+--color56: #A000A0;  /* Violet profond RGB: rgb(160, 0, 160);           */
+--color57: #700070;  /* Violet sombre RGB: rgb(112, 0, 112);            */
+--color58: #500050;  /* Violet foncé RGB: rgb(80, 0, 80);               */
+--color59: #300030;  /* Violet très foncé RGB: rgb(48, 0, 48);          */
+--color60: #180018;  /* Noir violacé RGB: rgb(24, 0, 24);               */
 }
+html {
+    scroll-behavior: smooth;     /* navigation fluide */
+}
+body{
+    font-family: "Unbounded", sans-serif;
+    
+}
+* {
+    margin: 0 ;
+    padding: 0;
+}
+
+#bg-container{
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width:100%;
+    max-height: 360vh;
+    z-index: 2;
+    background-color: #500050;
+}
+main {
+    flex: 1; /* Prend tout l'espace disponible */
+}
+footer{
+    color: var(--color1);
+    bottom: 5px;
+    text-align: center;
+    z-index: 10;
+    font-size: .6rem;
+    width:100%;
+    position:fixed;
+}
+
+
+
+

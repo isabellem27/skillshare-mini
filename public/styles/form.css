@@ -1,0 +1,28 @@
+.formulaire{
+    background-color : #F0F8FF;  
+    opacity: 100%;
+    box-shadow: 0 4px 6px #500050;
+    width: 50%;
+    margin: 5% auto;
+
+}
+.bgForm{
+    color : #500050;  
+    font-size: .8rem;
+    text-align: center;
+    opacity: 100%;
+    padding: 5%;
+    margin: auto;
+
+}
+.titre{
+    margin-bottom: 3rem;
+}
+.field{
+    margin: .5rem;
+}
+.control{
+    display:inline;
+}
+
+
