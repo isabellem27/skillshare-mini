@@ -46,7 +46,7 @@ Home
 Ouvrir votre navigateur web et saisissez l'URL suivante: http://151.80.144.159:8100
 
 **Comment arrêter le projet:**
-Fermer votre navigateur web
+Fermer votre navigateur web 
 
 # Licence
 
