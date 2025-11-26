@@ -6,13 +6,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+#[Route('/user')]
 final class UserController extends AbstractController
 {
-    #[Route('/user', name: 'app_user')]
-    public function index(): Response
+    #[Route( name: 'app_user_index', methods: ['GET'])]
+    public function index(UserRepository $userRepository): Response
     {
         return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController',
+            'users' => $userRepository->findAll(),
         ]);
     }
+
+
 }

@@ -1,35 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Skill index{% endblock %}
+{% block title %}Liste des compétences{% endblock %}
 
 {% block body %}
-    <h1>Skill index</h1>
+    <link rel="stylesheet" href="{{asset("./styles/form.css")}}">
+    <link rel="stylesheet" href="{{asset("./styles/buttons.css")}}">
+    <div class="formulaire">    
+        <div class="bgForm"> 
+            <h1>Liste des compétences disponibles/h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Label</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for skill in skills %}
-            <tr>
-                <td>{{ skill.id }}</td>
-                <td>{{ skill.label }}</td>
-                <td>
-                    <a href="{{ path('app_skill_show', {'id': skill.id}) }}">show</a>
-                    <a href="{{ path('app_skill_edit', {'id': skill.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Label</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for skill in skills %}
+                    <tr>
+                        <td>{{ skill.id }}</td>
+                        <td>{{ skill.label }}</td>
+                        <td>
+                            <a href="{{ path('app_skill_edit', {'id': skill.id}) }}" class="btnAction">Modifier</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3">Aucune compétence n'a été chargée pour le moment</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
 
-    <a href="{{ path('app_skill_new') }}">Create new</a>
+            <a href="{{ path('app_skill_new') }}" class="btnAction">Créer</a>
+        </div>
+    </div>
 {% endblock %}

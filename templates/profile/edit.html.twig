@@ -1,0 +1,163 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil utilisateur!{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="{{asset("./styles/form.css")}}">
+    <link rel="stylesheet" href="{{asset("./styles/buttons.css")}}">
+    <div class="formulaire">    
+        <div class="bgForm">   
+            <h1 class="titre">{{user.firstname}} {{user.lastname}}</h1> 
+            <div class="field">
+                <p> {{user.firstname}} {{user.lastname}} propose les compétences suivantes:</p>
+                <ul>
+                    {% for skillOffered in user.userSkillOffereds %}
+                      <li id="skill-offered-{{ loop.index0 }}"> 
+                           <span class="skill-label">{{ skillOffered.label }}</span>
+                            <div class="buttons">
+                                <button type="button" class="btnAction" id="modify-skill-offered-{{ loop.index0 }}">Modifier</button>
+                                <button type="button" class="btnAction" id="remove-skill-offered-{{ loop.index0 }}">Supprimer</button>
+                            </div>    
+                       </li>
+                    {% endfor %}                  
+                </ul>
+                <button type="button" class="btnAction" id="add-skill-offered">Ajouter une compétence proposée</button>
+            </div> 
+            <br>
+            <div class="field">
+                <p> {{user.firstname}} {{user.lastname}} recherche les compétences suivantes:</p>
+                <ul>
+                    {% for skillWanted in user.userSkillWanteds %}
+                        <li id="skill-wanted-{{ loop.index0 }}"> 
+                           <span class="skill-label">{{ skillWanted.label }}</span>
+                            <div class="buttons">
+                                <button type="button" class="btnAction" id="modify-skill-wanted-{{ loop.index0 }}">Modifier</button>
+                                <button type="button" class="btnAction" id="remove-skill-wanted-{{ loop.index0 }}">Supprimer</button>
+                            </div>                       
+                       </li>
+                    {% endfor %}                  
+                </ul>
+                <button type="submit" class="btnAction" id="add-skill-wanted">Ajouter une compétence recherchée</button>
+            </div> 
+            <div class="buttons">
+                <a id="retour" href="{{ app.request.headers.get('referer') }}">Retour</a>
+            </div> 
+        </div>
+    </div>
+
+<script>
+    let skillOfferedCount = {{ user.userSkillOffereds|length }};
+    let skillWantedCount = {{ user.userSkillWanteds|length }};
+
+    // Ajouter une compétence proposée
+    document.getElementById('add-skill-offered').addEventListener('click', function(e) {
+        e.preventDefault();
+        const ul = this.parentElement.querySelector('ul');
+        const index = skillOfferedCount++;
+        
+        const li = document.createElement('li');
+        li.id = `skill-offered-${index}`;
+        li.innerHTML = `
+            <input type="text" class="skill-input" placeholder="Entrez une compétence" value="">
+            <div class="buttons">
+                <button type="button" class="btnAction" id="modify-skill-offered-${index}">Valider</button>
+                <button type="button" class="btnAction" id="remove-skill-offered-${index}">-</button>
+            </div>
+        `;
+        
+        ul.appendChild(li);
+        
+        attachModifyHandler(`modify-skill-offered-${index}`, `skill-offered-${index}`, true);
+        attachRemoveHandler(`remove-skill-offered-${index}`);
+    });
+
+    // Ajouter une compétence recherchée
+    document.getElementById('add-skill-wanted').addEventListener('click', function(e) {
+        e.preventDefault();
+        const ul = this.parentElement.querySelector('ul');
+        const index = skillWantedCount++;
+        
+        const li = document.createElement('li');
+        li.id = `skill-wanted-${index}`;
+        li.innerHTML = `
+            <input type="text" class="skill-input" placeholder="Entrez une compétence" value="">
+            <div class="buttons">
+                <button type="button" class="btnAction" id="modify-skill-wanted-${index}">Valider</button>
+                <button type="button" class="btnAction" id="remove-skill-wanted-${index}">-</button>
+            </div>
+        `;
+        
+        ul.appendChild(li);
+        
+        attachModifyHandler(`modify-skill-wanted-${index}`, `skill-wanted-${index}`, true);
+        attachRemoveHandler(`remove-skill-wanted-${index}`);
+    });
+
+    // Fonction pour gérer la modification
+    function attachModifyHandler(buttonId, itemId, isNew = false) {
+        const button = document.getElementById(buttonId);
+        if (!button) return;
+        
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const li = document.getElementById(itemId);
+            const skillLabel = li.querySelector('.skill-label');
+            const skillInput = li.querySelector('.skill-input');
+
+            if (isNew || skillInput) {
+                // Mode édition -> validation
+                const newValue = skillInput.value.trim();
+                if (newValue === '') {
+                    alert('Veuillez entrer une compétence');
+                    return;
+                }
+                if (skillLabel) {
+                    skillLabel.textContent = newValue;
+                }
+                skillInput.remove();
+                this.textContent = 'Modifier';
+            } else {
+                // Mode affichage -> édition
+                const currentValue = skillLabel.textContent;
+                skillLabel.remove();
+                
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.className = 'skill-input';
+                input.value = currentValue;
+                
+                li.insertBefore(input, li.querySelector('.buttons'));
+                input.focus();
+                input.select();
+                
+                this.textContent = 'Valider';
+            }
+        });
+    }
+
+    // Fonction pour gérer la suppression
+    function attachRemoveHandler(buttonId) {
+        const button = document.getElementById(buttonId);
+        if (!button) return;
+        
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (confirm('Êtes-vous sûr de vouloir supprimer cette compétence ?')) {
+                const li = this.closest('li');
+                li.remove();
+            }
+        });
+    }
+
+    // Attacher les handlers aux boutons existants
+    document.querySelectorAll('[id^="modify-skill-offered-"], [id^="modify-skill-wanted-"]').forEach(btn => {
+        const itemId = btn.id.replace('modify-', '');
+        attachModifyHandler(btn.id, itemId);
+    });
+
+    document.querySelectorAll('[id^="remove-skill-offered-"], [id^="remove-skill-wanted-"]').forEach(btn => {
+        attachRemoveHandler(btn.id);
+    });
+</script>
+
+{% endblock %}
