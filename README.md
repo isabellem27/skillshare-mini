@@ -43,7 +43,7 @@ Home
 # chargement de la base
 
 # lancer le serveur virtuel
-Ouvrir votre navigateur web et saisissez l'URL suivante: http://151.80.144.159:8000
+Ouvrir votre navigateur web et saisissez l'URL suivante: http://151.80.144.159:8100
 
 **Comment arrêter le projet:**
 Fermer votre navigateur web
