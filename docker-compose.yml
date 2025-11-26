@@ -1,0 +1,35 @@
+name: skillshareIsa
+services:
+  web:
+    build: .                    # construit le service PHP/Apache déjà 
+    container_name: appisa          # nom fixe du conteneur
+    ports:
+      - "8100:80"                # accès à l'application via localhost:8080
+    volumes:
+      - ./:/var/www/html/        # monte ton projet dans le conteneur
+    depends_on:
+      - db                       # attend que le conteneur db soit lancé
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=dev000
+      - DB_NAME=skillshare
+      - DB_PORT=3306
+    networks:
+      - projet_network            # réseau dédié pour DNS interne
+
+  db:
+    image: mysql:8.0
+    container_name: db           # nom fixe du conteneur
+    environment:
+      - MYSQL_ROOT_PASSWORD=dev000
+      - MYSQL_DATABASE=skillshare
+    volumes:
+      - ./sql/:/docker-entrypoint-initdb.d/   # <-- exécution automatique
+#- ./sql/:/var/lib/mysql    # persistance de la base
+    networks:
+      - projet_network            # même réseau que web
+
+networks:
+  projet_network:
+    driver: bridge

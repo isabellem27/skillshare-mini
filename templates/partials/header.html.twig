@@ -1,12 +1,12 @@
 
 <header>
     <nav>
-        <a class="btnMenu" id="lstUser">Liste des utilisateurs</a>
-        <a class="btnMenu" id="lstSkill">Liste des compétences</a>
+        <a  href="{{ path('app_user_index')}}" class="btnMenu" id="lstUser">Liste des utilisateurs</a>
+        <a  href="{{ path('app_skill_index')}}" class="btnMenu" id="lstSkill">Liste des compétences</a>
 
         {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
-            <a href="" class="btnMenu" id="monProfil">Mon profil</a>       
-            <a href="" class="btnMenu" id="mesSkill">Modifier les compétences</a>          
+            <a href="app_profile_edit" class="btnMenu" id="monProfil">Mon profil</a>       
+            <a href="app_skill_index" class="btnMenu" id="mesSkill">Modifier les compétences</a>          
             <span class="identity">{{app.user.firstName}} {{app.user.lastName}}</span>
             <a class="btnMenu"  href="{{ path('app_logout')}}">Se déconnecter</a>
         {% else %}    
